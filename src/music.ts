@@ -1,10 +1,10 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 
 async function osascript(common: string) {
   return new Promise((res, rej) => {
-    exec(`osascript -e '${common}'`, (error, stdout, stderr) => {
+    execFile("osascript", ["-e", common], (error, stdout, stderr) => {
       if (error) {
         rej(error);
       } else {
